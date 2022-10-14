@@ -7,21 +7,22 @@
 #include <BLEPeripheral.h>
 
 // LED pin
-#define LED_PIN   LED_BUILTIN
+#define LED_PIN LED_BUILTIN
 
-//custom boards may override default pin definitions with BLEPeripheral(PIN_REQ, PIN_RDY, PIN_RST)
-BLEPeripheral                    blePeripheral                            = BLEPeripheral();
+// custom boards may override default pin definitions with BLEPeripheral(PIN_REQ, PIN_RDY, PIN_RST)
+BLEPeripheral blePeripheral = BLEPeripheral();
 
 // create service
-BLEService               ledService           = BLEService("19b10000e8f2537e4f6cd104768a1214");
+BLEService ledService = BLEService("19b10000e8f2537e4f6cd104768a1214");
 
 // create switch characteristic
-BLECharCharacteristic    switchCharacteristic = BLECharCharacteristic("19b10001e8f2537e4f6cd104768a1214", BLERead | BLEWrite);
+BLECharCharacteristic switchCharacteristic = BLECharCharacteristic("19b10001e8f2537e4f6cd104768a1214", BLERead | BLEWrite);
 
-void setup() {
+void setup()
+{
   Serial.begin(9600);
-#if defined (__AVR_ATmega32U4__)
-  delay(5000);  //5 seconds delay for enabling to see the start up comments on the serial board
+#if defined(__AVR_ATmega32U4__)
+  delay(5000); // 5 seconds delay for enabling to see the start up comments on the serial board
 #endif
 
   // set LED pin to output mode
@@ -41,17 +42,21 @@ void setup() {
   Serial.println(F("BLE LED Peripheral"));
 }
 
-void loop() {
+void loop()
+{
   BLECentral central = blePeripheral.central();
 
-  if (central) {
+  if (central)
+  {
     // central connected to peripheral
     Serial.print(F("Connected to central: "));
     Serial.println(central.address());
 
-    while (central.connected()) {
+    while (central.connected())
+    {
       // central still connected to peripheral
-      if (switchCharacteristic.written()) {
+      if (switchCharacteristic.written())
+      {
         // central wrote new value to characteristic, update LED
         Serial.println(switchCharacteristic.value());
       }
@@ -61,4 +66,4 @@ void loop() {
     Serial.print(F("Disconnected from central: "));
     Serial.println(central.address());
   }
-} 
+}
