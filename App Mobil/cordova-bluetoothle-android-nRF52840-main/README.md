@@ -1,1 +1,0 @@
-# cordova-bluetoothle-android-nRF52840
