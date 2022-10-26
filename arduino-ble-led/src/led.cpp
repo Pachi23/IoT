@@ -54,12 +54,17 @@ void loop()
 
     while (central.connected())
     {
+
+      Serial.println(switchCharacteristic.value());
+      switchCharacteristic.setValue(random(1, 100));
+      Serial.println(switchCharacteristic.value());
+      delay(1000);
       // central still connected to peripheral
-      if (switchCharacteristic.written())
-      {
-        // central wrote new value to characteristic, update LED
-        Serial.println(switchCharacteristic.value());
-      }
+      // if (switchCharacteristic.written())
+      // {
+      //   // central wrote new value to characteristic, update LED
+        
+      // }
     }
 
     // central disconnected
