@@ -8,19 +8,11 @@ class BleDeviceInteractor {
         bleDiscoverServices,
     required Future<List<int>> Function(QualifiedCharacteristic characteristic)
         readCharacteristic,
-    required Future<void> Function(QualifiedCharacteristic characteristic,
-            {required List<int> value})
-        writeWithResponse,
-    required Future<void> Function(QualifiedCharacteristic characteristic,
-            {required List<int> value})
-        writeWithOutResponse,
     required void Function(String message) logMessage,
     required Stream<List<int>> Function(QualifiedCharacteristic characteristic)
         subscribeToCharacteristic,
   })  : _bleDiscoverServices = bleDiscoverServices,
         _readCharacteristic = readCharacteristic,
-        _writeWithResponse = writeWithResponse,
-        _writeWithoutResponse = writeWithOutResponse,
         _subScribeToCharacteristic = subscribeToCharacteristic,
         _logMessage = logMessage;
 
@@ -29,12 +21,6 @@ class BleDeviceInteractor {
 
   final Future<List<int>> Function(QualifiedCharacteristic characteristic)
       _readCharacteristic;
-
-  final Future<void> Function(QualifiedCharacteristic characteristic,
-      {required List<int> value}) _writeWithResponse;
-
-  final Future<void> Function(QualifiedCharacteristic characteristic,
-      {required List<int> value}) _writeWithoutResponse;
 
   final Stream<List<int>> Function(QualifiedCharacteristic characteristic)
       _subScribeToCharacteristic;
@@ -63,38 +49,6 @@ class BleDeviceInteractor {
     } on Exception catch (e, s) {
       _logMessage(
         'Error occured when reading ${characteristic.characteristicId} : $e',
-      );
-      // ignore: avoid_print
-      print(s);
-      rethrow;
-    }
-  }
-
-  Future<void> writeCharacterisiticWithResponse(
-      QualifiedCharacteristic characteristic, List<int> value) async {
-    try {
-      _logMessage(
-          'Write with response value : $value to ${characteristic.characteristicId}');
-      await _writeWithResponse(characteristic, value: value);
-    } on Exception catch (e, s) {
-      _logMessage(
-        'Error occured when writing ${characteristic.characteristicId} : $e',
-      );
-      // ignore: avoid_print
-      print(s);
-      rethrow;
-    }
-  }
-
-  Future<void> writeCharacterisiticWithoutResponse(
-      QualifiedCharacteristic characteristic, List<int> value) async {
-    try {
-      await _writeWithoutResponse(characteristic, value: value);
-      _logMessage(
-          'Write without response value: $value to ${characteristic.characteristicId}');
-    } on Exception catch (e, s) {
-      _logMessage(
-        'Error occured when writing ${characteristic.characteristicId} : $e',
       );
       // ignore: avoid_print
       print(s);
