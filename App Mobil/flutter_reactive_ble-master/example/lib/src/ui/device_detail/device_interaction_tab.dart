@@ -117,9 +117,14 @@ class _DeviceInteractionTabState extends State<_DeviceInteractionTab> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       ElevatedButton(
-                        onPressed: !widget.viewModel.deviceConnected
-                            ? widget.viewModel.connect
-                            : null,
+                        onPressed: () {
+                          !widget.viewModel.deviceConnected
+                              ? widget.viewModel.connect
+                              : null;
+                          widget.viewModel.deviceConnected
+                              ? discoverServices
+                              : null;
+                        },
                         child: const Text("Connect"),
                       ),
                       ElevatedButton(
