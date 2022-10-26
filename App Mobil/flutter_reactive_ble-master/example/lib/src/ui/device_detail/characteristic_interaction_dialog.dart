@@ -17,9 +17,6 @@ class CharacteristicInteractionDialog extends StatelessWidget {
       builder: (context, interactor, _) => _CharacteristicInteractionDialog(
             characteristic: characteristic,
             readCharacteristic: interactor.readCharacteristic,
-            writeWithResponse: interactor.writeCharacterisiticWithResponse,
-            writeWithoutResponse:
-                interactor.writeCharacterisiticWithoutResponse,
             subscribeToCharacteristic: interactor.subScribeToCharacteristic,
           ));
 }
@@ -28,8 +25,6 @@ class _CharacteristicInteractionDialog extends StatefulWidget {
   const _CharacteristicInteractionDialog({
     required this.characteristic,
     required this.readCharacteristic,
-    required this.writeWithResponse,
-    required this.writeWithoutResponse,
     required this.subscribeToCharacteristic,
     Key? key,
   }) : super(key: key);
@@ -37,17 +32,8 @@ class _CharacteristicInteractionDialog extends StatefulWidget {
   final QualifiedCharacteristic characteristic;
   final Future<List<int>> Function(QualifiedCharacteristic characteristic)
       readCharacteristic;
-  final Future<void> Function(
-          QualifiedCharacteristic characteristic, List<int> value)
-      writeWithResponse;
-
   final Stream<List<int>> Function(QualifiedCharacteristic characteristic)
       subscribeToCharacteristic;
-
-  final Future<void> Function(
-          QualifiedCharacteristic characteristic, List<int> value)
-      writeWithoutResponse;
-
   @override
   _CharacteristicInteractionDialogState createState() =>
       _CharacteristicInteractionDialogState();
@@ -102,19 +88,6 @@ class _CharacteristicInteractionDialogState
       )
       .toList();
 
-  Future<void> writeCharacteristicWithResponse() async {
-    await widget.writeWithResponse(widget.characteristic, _parseInput());
-    setState(() {
-      writeOutput = 'Ok';
-    });
-  }
-
-  Future<void> writeCharacteristicWithoutResponse() async {
-    await widget.writeWithoutResponse(widget.characteristic, _parseInput());
-    setState(() {
-      writeOutput = 'Done';
-    });
-  }
 
   Widget sectionHeader(String text) => Text(
         text,
@@ -136,23 +109,6 @@ class _CharacteristicInteractionDialogState
               signed: false,
             ),
           ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ElevatedButton(
-              onPressed: writeCharacteristicWithResponse,
-              child: const Text('With response'),
-            ),
-            ElevatedButton(
-              onPressed: writeCharacteristicWithoutResponse,
-              child: const Text('Without response'),
-            ),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsetsDirectional.only(top: 8.0),
-          child: Text('Output: $writeOutput'),
         ),
       ];
 

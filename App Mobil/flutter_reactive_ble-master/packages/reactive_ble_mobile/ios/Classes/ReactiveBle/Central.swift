@@ -234,48 +234,6 @@ final class Central {
 
     }
 
-    func writeWithResponse(
-        value: Data,
-        characteristic qualifiedCharacteristic: QualifiedCharacteristic,
-        completion: @escaping CharacteristicWriteCompletionHandler
-    ) throws {
-        let characteristic = try resolve(characteristic: qualifiedCharacteristic)
-
-        guard characteristic.properties.contains(.write)
-        else { throw Failure.notWritable(qualifiedCharacteristic) }
-
-        characteristicWriteRegistry.registerTask(
-            key: qualifiedCharacteristic,
-            params: .init(value: value),
-            completion: papply(weak: self) { central, error in
-                completion(central, qualifiedCharacteristic, error)
-            }
-        )
-        
-        guard let peripheral = characteristic.service?.peripheral
-        else{ throw Failure.peripheralIsUnknown(qualifiedCharacteristic.peripheralID) }
-
-        characteristicWriteRegistry.updateTask(
-            key: qualifiedCharacteristic,
-            action: { $0.start(peripheral: peripheral) }
-        )
-    }
-    
-    func writeWithoutResponse(
-        value: Data,
-        characteristic qualifiedCharacteristic: QualifiedCharacteristic
-    ) throws {
-        let characteristic = try resolve(characteristic: qualifiedCharacteristic)
-
-        guard characteristic.properties.contains(.writeWithoutResponse)
-        else { throw Failure.notWritable(qualifiedCharacteristic) }
-        
-        guard let response = characteristic.service?.peripheral?.writeValue(value, for: characteristic, type: .withoutResponse)
-        else { throw Failure.characteristicNotFound(qualifiedCharacteristic) }
-        
-        return response
-    }
-
     func maximumWriteValueLength(for peripheral: PeripheralID, type: CBCharacteristicWriteType) throws -> Int {
         let peripheral = try resolve(connected: peripheral)
         return peripheral.maximumWriteValueLength(for: type)
