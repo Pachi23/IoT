@@ -125,35 +125,7 @@ class ReactiveBleMobilePlatform extends ReactiveBlePlatform {
           )
           .asStream();
 
-  @override
-  Future<WriteCharacteristicInfo> writeCharacteristicWithResponse(
-    QualifiedCharacteristic characteristic,
-    List<int> value,
-  ) async =>
-      _bleMethodChannel
-          .invokeMethod<List<int>>(
-              "writeCharacteristicWithResponse",
-              _argsToProtobufConverter
-                  .createWriteCharacteristicRequest(characteristic, value)
-                  .writeToBuffer())
-          .then(
-              (data) => _protobufConverter.writeCharacteristicInfoFrom(data!));
-
-  @override
-  Future<WriteCharacteristicInfo> writeCharacteristicWithoutResponse(
-    QualifiedCharacteristic characteristic,
-    List<int> value,
-  ) async =>
-      _bleMethodChannel
-          .invokeMethod<List<int>>(
-            "writeCharacteristicWithoutResponse",
-            _argsToProtobufConverter
-                .createWriteCharacteristicRequest(characteristic, value)
-                .writeToBuffer(),
-          )
-          .then(
-              (data) => _protobufConverter.writeCharacteristicInfoFrom(data!));
-
+ 
   @override
   Stream<void> subscribeToNotifications(
     QualifiedCharacteristic characteristic,

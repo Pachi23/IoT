@@ -149,51 +149,7 @@ void main() {
         expect(result, [1]);
       });
     });
-
-    group('Write characteristic with response', () {
-      const value = [2];
-      QualifiedCharacteristic characteristic;
-
-      setUp(() async {
-        characteristic = _createChar();
-
-        when(_deviceOperation.writeCharacteristicWithResponse(
-          any,
-          value: anyNamed('value'),
-        )).thenAnswer((_) async => [0]);
-
-        await _sut.writeCharacteristicWithResponse(characteristic,
-            value: value);
-      });
-
-      test('It completes operation without errors', () {
-        expect(true, true);
-      });
-    });
-
-    group('Write characteristic without response', () {
-      const value = [2];
-      QualifiedCharacteristic characteristic;
-
-      setUp(() async {
-        characteristic = _createChar();
-
-        when(_deviceOperation.writeCharacteristicWithoutResponse(
-          any,
-          value: anyNamed('value'),
-        )).thenAnswer((_) async => [0]);
-
-        await _sut.writeCharacteristicWithoutResponse(
-          characteristic,
-          value: value,
-        );
-      });
-
-      test('It completes operation without errors', () {
-        expect(true, true);
-      });
-    });
-
+    
     group('Request mtu', () {
       const deviceId = '123';
       const mtu = 120;

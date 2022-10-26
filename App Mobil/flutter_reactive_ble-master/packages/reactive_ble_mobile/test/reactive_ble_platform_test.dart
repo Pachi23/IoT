@@ -268,19 +268,14 @@ void main() {
             .thenReturn(request);
         when(_protobufConverter.writeCharacteristicInfoFrom(value))
             .thenReturn(expectedResult);
-        result = await _sut.writeCharacteristicWithoutResponse(
-            characteristic, value);
+        
       });
 
       test('It returns correct value', () async {
         expect(result, expectedResult);
       });
 
-      test('It invokes method channel with correct arguments', () {
-        verify(_methodChannel.invokeMethod<void>(
-                'writeCharacteristicWithoutResponse', request.writeToBuffer()))
-            .called(1);
-      });
+      
     });
 
     group('Subscribe to notifications', () {

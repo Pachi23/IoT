@@ -30,8 +30,6 @@ class PluginController {
             "clearGattCache" to this::clearGattCache,
             "disconnectFromDevice" to this::disconnectFromDevice,
             "readCharacteristic" to this::readCharacteristic,
-            "writeCharacteristicWithResponse" to this::writeCharacteristicWithResponse,
-            "writeCharacteristicWithoutResponse" to this::writeCharacteristicWithoutResponse,
             "readNotifications" to this::readNotifications,
             "stopNotifications" to this::stopNotifications,
             "negotiateMtuSize" to this::negotiateMtuSize,
@@ -170,13 +168,6 @@ class PluginController {
                 .discard()
     }
 
-    private fun writeCharacteristicWithResponse(call: MethodCall, result: Result) {
-        executeWriteAndPropagateResultToChannel(call, result, com.signify.hue.flutterreactiveble.ble.BleClient::writeCharacteristicWithResponse)
-    }
-
-    private fun writeCharacteristicWithoutResponse(call: MethodCall, result: Result) {
-        executeWriteAndPropagateResultToChannel(call, result, com.signify.hue.flutterreactiveble.ble.BleClient::writeCharacteristicWithoutResponse)
-    }
 
     private fun executeWriteAndPropagateResultToChannel(
             call: MethodCall,

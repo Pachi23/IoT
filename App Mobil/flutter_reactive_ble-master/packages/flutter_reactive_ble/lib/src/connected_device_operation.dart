@@ -6,16 +6,6 @@ abstract class ConnectedDeviceOperation {
 
   Future<List<int>> readCharacteristic(QualifiedCharacteristic characteristic);
 
-  Future<void> writeCharacteristicWithResponse(
-    QualifiedCharacteristic characteristic, {
-    required List<int> value,
-  });
-
-  Future<void> writeCharacteristicWithoutResponse(
-    QualifiedCharacteristic characteristic, {
-    required List<int> value,
-  });
-
   Stream<List<int>> subscribeToCharacteristic(
     QualifiedCharacteristic characteristic,
     Future<void> isDisconnected,
@@ -51,24 +41,6 @@ class ConnectedDeviceOperationImpl implements ConnectedDeviceOperation {
         .firstWhere((_) => true,
             orElse: () => throw NoBleCharacteristicDataReceived());
   }
-
-  @override
-  Future<void> writeCharacteristicWithResponse(
-    QualifiedCharacteristic characteristic, {
-    required List<int> value,
-  }) async =>
-      _blePlatform
-          .writeCharacteristicWithResponse(characteristic, value)
-          .then((info) => info.result.dematerialize());
-
-  @override
-  Future<void> writeCharacteristicWithoutResponse(
-    QualifiedCharacteristic characteristic, {
-    required List<int> value,
-  }) async =>
-      _blePlatform
-          .writeCharacteristicWithoutResponse(characteristic, value)
-          .then((info) => info.result.dematerialize());
 
   @override
   Stream<List<int>> subscribeToCharacteristic(

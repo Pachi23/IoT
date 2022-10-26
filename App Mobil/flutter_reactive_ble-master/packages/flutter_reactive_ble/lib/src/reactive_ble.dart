@@ -158,39 +158,7 @@ class FlutterReactiveBle {
     return _connectedDeviceOperator.readCharacteristic(characteristic);
   }
 
-  /// Writes a value to the specified characteristic awaiting for an acknowledgement.
-  ///
-  /// The returned future completes with an error in case of a failure during writing.
-  Future<void> writeCharacteristicWithResponse(
-    QualifiedCharacteristic characteristic, {
-    required List<int> value,
-  }) async {
-    await initialize();
-    return _connectedDeviceOperator.writeCharacteristicWithResponse(
-      characteristic,
-      value: value,
-    );
-  }
-
-  /// Writes a value to the specified characteristic without waiting for an acknowledgement.
-  ///
-  /// Use this method in case the  client does not need an acknowledgement
-  /// that the write was successfully performed. For subsequent write operations it is
-  /// recommended to execute a [writeCharacteristicWithResponse] each n times to make sure
-  /// the BLE device is still responsive.
-  ///
-  /// The returned future completes with an error in case of a failure during writing.
-  Future<void> writeCharacteristicWithoutResponse(
-    QualifiedCharacteristic characteristic, {
-    required List<int> value,
-  }) async {
-    await initialize();
-    return _connectedDeviceOperator.writeCharacteristicWithoutResponse(
-      characteristic,
-      value: value,
-    );
-  }
-
+ 
   /// Request a specific MTU for a connected device.
   ///
   /// Returns the actual MTU negotiated.

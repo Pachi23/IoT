@@ -111,24 +111,7 @@ class MockReactiveBlePlatform extends _i1.Mock
       (super.noSuchMethod(
           Invocation.method(#readCharacteristic, [characteristic]),
           returnValue: Stream<void>.empty()) as _i4.Stream<void>);
-  @override
-  _i4.Future<_i2.WriteCharacteristicInfo> writeCharacteristicWithResponse(
-          _i2.QualifiedCharacteristic? characteristic, List<int>? value) =>
-      (super.noSuchMethod(
-              Invocation.method(
-                  #writeCharacteristicWithResponse, [characteristic, value]),
-              returnValue: Future<_i2.WriteCharacteristicInfo>.value(
-                  _FakeWriteCharacteristicInfo_1()))
-          as _i4.Future<_i2.WriteCharacteristicInfo>);
-  @override
-  _i4.Future<_i2.WriteCharacteristicInfo> writeCharacteristicWithoutResponse(
-          _i2.QualifiedCharacteristic? characteristic, List<int>? value) =>
-      (super.noSuchMethod(
-              Invocation.method(
-                  #writeCharacteristicWithoutResponse, [characteristic, value]),
-              returnValue: Future<_i2.WriteCharacteristicInfo>.value(
-                  _FakeWriteCharacteristicInfo_1()))
-          as _i4.Future<_i2.WriteCharacteristicInfo>);
+  
   @override
   _i4.Stream<void> subscribeToNotifications(
           _i2.QualifiedCharacteristic? characteristic) =>
