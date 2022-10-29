@@ -69,8 +69,7 @@ class _DeviceListState extends State<_DeviceList> {
   }
 
   void _startScanning() {
-    final text = _uuidController.text;
-    widget.startScan(text.isEmpty ? [] : [Uuid.parse(_uuidController.text)]);
+    widget.startScan([]);
   }
 
   @override
@@ -85,18 +84,6 @@ class _DeviceListState extends State<_DeviceList> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 16),
-                  const Text('Service UUID (2, 4, 16 bytes):'),
-                  TextField(
-                    controller: _uuidController,
-                    enabled: !widget.scannerState.scanIsInProgress,
-                    decoration: InputDecoration(
-                        errorText:
-                            _uuidController.text.isEmpty || _isValidUuidInput()
-                                ? null
-                                : 'Invalid UUID format'),
-                    autocorrect: false,
-                  ),
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,7 +109,7 @@ class _DeviceListState extends State<_DeviceList> {
                     children: [
                       Expanded(
                         child: Text(!widget.scannerState.scanIsInProgress
-                            ? 'Enter a UUID above and tap start to begin scanning'
+                            ? 'Tap start to begin scanning'
                             : 'Tap a device to connect to it'),
                       ),
                       if (widget.scannerState.scanIsInProgress ||
