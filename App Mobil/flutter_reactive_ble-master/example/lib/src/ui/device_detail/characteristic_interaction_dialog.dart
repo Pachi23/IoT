@@ -94,24 +94,7 @@ class _CharacteristicInteractionDialogState
         style: const TextStyle(fontWeight: FontWeight.bold),
       );
 
-  List<Widget> get writeSection => [
-        sectionHeader('Write characteristic'),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: TextField(
-            controller: textEditingController,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Value',
-            ),
-            keyboardType: const TextInputType.numberWithOptions(
-              decimal: true,
-              signed: false,
-            ),
-          ),
-        ),
-      ];
-
+  
   List<Widget> get readSection => [
         sectionHeader('Read characteristic'),
         Row(
@@ -164,8 +147,6 @@ class _CharacteristicInteractionDialogState
               ),
               divider,
               ...readSection,
-              divider,
-              ...writeSection,
               divider,
               ...subscribeSection,
               divider,
