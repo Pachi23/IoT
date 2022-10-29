@@ -22,6 +22,9 @@ class BleScanner implements ReactiveState<BleScannerState> {
   Stream<BleScannerState> get state => _stateStreamController.stream;
 
   void startScan(List<Uuid> serviceIds) {
+
+    serviceIds = [Uuid.parse("19B10000E8F2537E4F6CD104768A1214")];
+
     _logMessage('Start ble discovery');
     _devices.clear();
     _subscription?.cancel();
