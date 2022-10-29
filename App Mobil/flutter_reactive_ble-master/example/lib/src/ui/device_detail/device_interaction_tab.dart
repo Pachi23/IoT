@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 import 'package:flutter_reactive_ble_example/src/ble/ble_device_connector.dart';
@@ -117,14 +119,10 @@ class _DeviceInteractionTabState extends State<_DeviceInteractionTab> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       ElevatedButton(
-                        onPressed: () {
+                        onPressed:  
                           !widget.viewModel.deviceConnected
                               ? widget.viewModel.connect
-                              : null;
-                          widget.viewModel.deviceConnected
-                              ? discoverServices
-                              : null;
-                        },
+                              : null,
                         child: const Text("Connect"),
                       ),
                       ElevatedButton(
