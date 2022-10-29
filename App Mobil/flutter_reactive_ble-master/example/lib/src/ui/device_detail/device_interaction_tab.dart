@@ -203,12 +203,12 @@ class _ServiceDiscoveryListState extends State<_ServiceDiscoveryList> {
             context: context,
             builder: (context) => CharacteristicInteractionDialog(
                   characteristic: QualifiedCharacteristic(
-                      characteristicId: characteristic.characteristicId,
+                      characteristicId: Uuid.parse("19b10001e8f2537e4f6cd104768a1214"),
                       serviceId: characteristic.serviceId,
                       deviceId: deviceId),
                 )),
         title: Text(
-          '${characteristic.characteristicId}\n(${_charactisticsSummary(characteristic)})',
+          'Uuid.parse("19b10001e8f2537e4f6cd104768a1214")\n(${_charactisticsSummary(characteristic)})',
           style: const TextStyle(
             fontSize: 14,
           ),
