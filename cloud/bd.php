@@ -79,7 +79,7 @@ class data extends bd
     public function getLastValue()
     {
         $output = null;
-        $sql = "SELECT value FROM dades ORDER BY date DESC LIMIT 1";
+        $sql = "SELECT value, date FROM dades ORDER BY date DESC LIMIT 1";
         if ($this->conexio->connect_errno) {
             return false;
         } else {
@@ -87,9 +87,10 @@ class data extends bd
             $query->execute();
             $query->store_result();
 
-            mysqli_stmt_bind_result($query, $value);
+            mysqli_stmt_bind_result($query, $value, $date);
             while (mysqli_stmt_fetch($query)) {
-                $output = $value;
+                $output['value'] = $value;
+                $output['date'] = $date;
             }
             $query->close();
             return $output;

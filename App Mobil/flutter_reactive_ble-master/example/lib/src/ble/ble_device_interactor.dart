@@ -1,5 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter_reactive_ble/flutter_reactive_ble.dart';
 
 class BleDeviceInteractor {
@@ -44,7 +47,18 @@ class BleDeviceInteractor {
     try {
       final result = await _readCharacteristic(characteristic);
 
-      _logMessage('Read ${characteristic.characteristicId}: value = $result');
+      //
+      final response = await http
+          .get(Uri.parse('http://192.168.43.48/cloud/index.php?function=save&value=$result'));
+
+
+      // final response = await http
+      //     .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+
+      final aaa = response.body;
+
+      _logMessage('Read ${characteristic.characteristicId}: value = $aaa');
+
       return result;
     } on Exception catch (e, s) {
       _logMessage(
