@@ -4,7 +4,6 @@ require_once "bd.php";
 
 function getDataForGraph()
 {
-    $bd = new data();
     return load();
 }
 
@@ -24,5 +23,21 @@ function load()
 function loadLast()
 {
     $bd = new data();
-    return json_encode($bd->getLastValue());
+    return $bd->getLastValue();
+}
+
+function getLast10Recods()
+{
+    $bd = new data();
+    return $bd->getLast10RecodsBD();
+}
+
+function getStats()
+{
+    $last = loadLast();
+    $bd = new data();
+    $data = $bd->getStatsBD();
+    
+    $data['last'] = $last['value'];
+    return $data;
 }
