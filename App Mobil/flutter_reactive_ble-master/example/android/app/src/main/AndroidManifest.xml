@@ -26,7 +26,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="flutter_reactive_ble_example"
+        android:label="IOT_Grup_8"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name="com.signify.hue.reactivebleexample.MainActivity"

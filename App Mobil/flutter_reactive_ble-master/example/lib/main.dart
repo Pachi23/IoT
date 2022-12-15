@@ -58,7 +58,7 @@ void main() {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Reactive BLE example',
+        title: 'IOT - Grup 8',
         color: _themeColor,
         theme: ThemeData(primarySwatch: _themeColor),
         home: const HomeScreen(),

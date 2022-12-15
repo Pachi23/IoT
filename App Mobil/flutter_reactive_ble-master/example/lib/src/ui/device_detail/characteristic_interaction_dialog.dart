@@ -96,7 +96,6 @@ class _CharacteristicInteractionDialogState
 
   
   List<Widget> get readSection => [
-        sectionHeader('Read characteristic'),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -109,19 +108,6 @@ class _CharacteristicInteractionDialogState
         ),
       ];
 
-  List<Widget> get subscribeSection => [
-        sectionHeader('Subscribe / notify'),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            ElevatedButton(
-              onPressed: subscribeCharacteristic,
-              child: const Text('Subscribe'),
-            ),
-            Text('Output: $subscribeOutput'),
-          ],
-        ),
-      ];
 
   Widget get divider => const Padding(
         padding: EdgeInsets.symmetric(vertical: 12.0),
@@ -135,20 +121,7 @@ class _CharacteristicInteractionDialogState
           child: ListView(
             shrinkWrap: true,
             children: [
-              const Text(
-                'Select an operation',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Text(
-                  widget.characteristic.characteristicId.toString(),
-                ),
-              ),
-              divider,
               ...readSection,
-              divider,
-              ...subscribeSection,
               divider,
               Align(
                 alignment: Alignment.bottomRight,
