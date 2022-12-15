@@ -208,7 +208,7 @@ class _ServiceDiscoveryListState extends State<_ServiceDiscoveryList> {
                       deviceId: deviceId),
                 )),
         title: Text(
-          'Uuid.parse("19b10001e8f2537e4f6cd104768a1214")\n(${_charactisticsSummary(characteristic)})',
+          '19b10001e8f2537e4f6cd104768a1214',
           style: const TextStyle(
             fontSize: 14,
           ),
@@ -240,7 +240,7 @@ class _ServiceDiscoveryListState extends State<_ServiceDiscoveryList> {
                       service.characteristics[index],
                       widget.deviceId,
                     ),
-                    itemCount: service.characteristicIds.length,
+                    itemCount: 1,
                   ),
                 ],
               ),
@@ -255,7 +255,7 @@ class _ServiceDiscoveryListState extends State<_ServiceDiscoveryList> {
           ),
         );
 
-    return panels;
+    return [panels[0]];
   }
 
   @override

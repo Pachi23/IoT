@@ -49,7 +49,7 @@ class BleDeviceInteractor {
 
       //
       final response = await http
-          .get(Uri.parse('http://192.168.43.48/cloud/index.php?function=save&value=$result'));
+          .get(Uri.parse('http://192.168.31.212/cloud/index.php?function=save&value=$result'));
 
 
       // final response = await http
