@@ -121,26 +121,4 @@ class data extends bd
             return $output;
         }
     }
-
-
-    public function getStatsBD()
-    {
-        $output = null;
-        $sql = "SELECT min(value), max(value) FROM dades";
-        if ($this->conexio->connect_errno) {
-            return false;
-        } else {
-            $query = $this->conexio->prepare($sql);
-            $query->execute();
-            $query->store_result();
-
-            mysqli_stmt_bind_result($query, $min, $max);
-            while (mysqli_stmt_fetch($query)) {
-                $output['min'] = $min;
-                $output['max'] = $max;
-            }
-            $query->close();
-            return $output;
-        }
-    }
 }

@@ -18,6 +18,8 @@
                     <th class="p-2">Maximum</th>
                     <th class="p-2">Minimum</th>
                     <th class="p-2">Last</th>
+                    <th class="p-2">Mean</th>
+                    <th class="p-2">Num. records</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,6 +30,8 @@
                     echo '<td>' . $stats['max'] . '</td>';
                     echo '<td>' . $stats['min'] . '</td>';
                     echo '<td>' . $stats['last'] . '</td>';
+                    echo '<td>' . $stats['mean'] . '</td>';
+                    echo '<td>' . $stats['count'] . '</td>';
                     ?>
                 </tr>
             </tbody>

@@ -7,9 +7,7 @@ $.ajax({
         dates = []
         valors = []
         response.forEach(element => {
-            tmp = element['value']
-            tmp = tmp.substr(tmp.indexOf("[") + 1, tmp.indexOf("]") - 1)
-            valors.push(tmp)
+            valors.push(element['value'])
             dates.push(element['date'])
         });
 
@@ -50,9 +48,7 @@ $.ajax({
         dates = []
         valors = []
         response.forEach(element => {
-            tmp = element['value']
-            tmp = tmp.substr(tmp.indexOf("[") + 1, tmp.indexOf("]") - 1)
-            valors.push(tmp)
+            valors.push(element['value'])
             dates.push(element['date'])
         });
 

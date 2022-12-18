@@ -10,12 +10,15 @@ function getDataForGraph()
 function save($value)
 {
     $bd = new data();
+
+    $tmp = trim($value, "[");
+    $value = intval(trim($tmp, "]"));
+
     $bd->setValue($value);
     $data = loadLast();
 
-    $out = "Value: " . $data['value'];
-
-    echo $out . "\n";
+    $lastValue = $data['value'];
+    return intval($lastValue);
 }
 
 function load()
@@ -39,9 +42,38 @@ function getLast10Recods()
 function getStats()
 {
     $last = loadLast();
-    $bd = new data();
-    $data = $bd->getStatsBD();
-    
+    if (!(isset($last))) {
+        $data['min'] = "-";
+        $data['max'] = "-";
+        $data['last'] = "-";
+        return $data;
+    }
+
+    $allData = load();
+
+    $min = $allData[0]['value'];
+    $max = $allData[0]['value'];
+    $count = 0;
+    $mean = 0;
+
+    foreach ($allData as $key => $value) {
+        $val = $value['value'];
+        if ($val > $max)
+            $max = $val;
+        else if ($val < $min)
+            $min = $val;
+
+        $mean += $val;
+        $count++;
+    }
+
+    $mean = round($mean / $count, 4);
+
+    $data['min'] = $min;
+    $data['max'] = $max;
     $data['last'] = $last['value'];
+    $data['mean'] = $mean;
+    $data['count'] = $count;
+
     return $data;
 }
