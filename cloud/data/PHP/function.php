@@ -11,7 +11,11 @@ function save($value)
 {
     $bd = new data();
     $bd->setValue($value);
-    return load();
+    $data = loadLast();
+
+    $out = "Value: " . $data['value'];
+
+    echo $out . "\n";
 }
 
 function load()

@@ -57,7 +57,7 @@ class BleDeviceInteractor {
 
       final aaa = response.body;
 
-      _logMessage('Read ${characteristic.characteristicId}: value = $aaa');
+      _logMessage(' $aaa');
 
       return result;
     } on Exception catch (e, s) {
