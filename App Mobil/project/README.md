@@ -1,8 +1,9 @@
-# flutter_reactive_ble
+#Aplicació pels dispositius Android.
 
-Demonstrates how to use the `flutter_reactive_ble` plugin.
 
-## Getting Started
+###Build:
+`flutter build apk`
 
-For help getting started with Flutter, view our online
-[documentation](http://flutter.dev/).
+------------
+
+# IOT - UAB - Grup 8
