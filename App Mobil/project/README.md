@@ -1,7 +1,7 @@
-#Aplicació pels dispositius Android.
+# Aplicació pels dispositius Android.
 
 
-###Build:
+### Build:
 `flutter build apk`
 
 ------------
